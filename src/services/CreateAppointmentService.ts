@@ -20,7 +20,7 @@ class CreatAppointmentServices{
         const findAppointmentInSameDate = this.appointmentsRepository.findByDate(AppointmentDate);
     
         if (findAppointmentInSameDate) {
-            throw Error('Horario Indisponivel')
+            throw Error('This Appointment is aready booked')
         }
     
         const appointment = this.appointmentsRepository.create({

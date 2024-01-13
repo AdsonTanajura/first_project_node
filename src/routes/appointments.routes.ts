@@ -7,9 +7,9 @@ const appointmentsRouter = Router();
 const appointmentsRepository = new AppointmentsRepository();
 
 appointmentsRouter.get('/', (request, response) => {
-    const appointment = appointmentsRepository.all();
+    const appointments = appointmentsRepository.all();
 
-    return response.json(appointment);
+    return response.json(appointments);
 });
 
 appointmentsRouter.post('/', (request, response) => {
@@ -24,8 +24,8 @@ appointmentsRouter.post('/', (request, response) => {
     
     return response.json(appointment);
 
-   } catch (err) {
-    return response.status(400).json({ error: 'Horario Indiponivel'})
+   } catch (err: any) {
+    return response.status(400).json({ error: err.message})
    }
 });
 
