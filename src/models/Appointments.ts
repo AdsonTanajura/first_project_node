@@ -1,4 +1,5 @@
 import { uuid } from "uuidv4";
+import { Entity } from "typeorm";
 
 class Appointment {
     id: string;
