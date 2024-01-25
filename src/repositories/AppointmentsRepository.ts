@@ -1,38 +1,13 @@
-import Appointment from "../models/Appointments";
-import isEqual from "date-fns/isEqual";
+import Appointment from '../models/Appointments';
+import postgresDataSource from '../datebase/data-source';
 
-interface CreateAppointmentTDO {
-    provider: string;
-    date: Date;
-}
 
-class AppointmentsRepository {
-    private appointments: Appointment[];
-    
-    constructor() {
-        this.appointments = [];
+    export const AppointmentsRepository = postgresDataSource.getRepository(Appointment).extend({
+        async findByDate(date: Date): Promise<Appointment | null> {
+        const findAppointment = await this.findOne({
+            where: { date: date },
+        });
+        return findAppointment || null;
     }
+});
 
-    public all(): Appointment[] {
-        return this.appointments;
-    }
-
-    public findByDate(date: Date): Appointment | null {
-        const findAppointmentInSameDate = this.appointments.find(appointment =>
-            isEqual(date, appointment.date)
-        );
-        return findAppointmentInSameDate || null;
-    }
-    
-
-
-    public create({ provider, date }: CreateAppointmentTDO): Appointment {
-        const appointment = new Appointment({provider, date});
-
-        this.appointments.push(appointment);
-        
-        return appointment;
-    }
-}
-
-export default AppointmentsRepository;

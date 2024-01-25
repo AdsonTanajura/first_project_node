@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateAppointments1705606026051 implements MigrationInterface {
 
@@ -11,9 +11,12 @@ export class CreateAppointments1705606026051 implements MigrationInterface {
                     type: 'varchar',
                     isPrimary: true,
                     generationStrategy: 'uuid',
+                    default: 'uuid_generate_v4()'
+
+
                 },
                 {
-                    name: 'provaider',
+                    name: 'provider',
                     type: 'varchar',
                     isNullable: false,
                 },
