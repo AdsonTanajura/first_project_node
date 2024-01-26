@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import {CreateAppointments1705606026051} from './migrations/1705606026051-CreateAppointments';
+import {Migrations} from './migrations/allMigrations';
 import Appointment from '../models/Appointments';
 
 const postgresDataSource = new DataSource({
@@ -11,7 +11,7 @@ const postgresDataSource = new DataSource({
     password: "docker",
     database: "gostack_postgres",
     entities: [Appointment],
-    migrations: [CreateAppointments1705606026051],
+    migrations: Migrations,
 
    
 })
