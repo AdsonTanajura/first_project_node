@@ -1,6 +1,6 @@
 
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import Appointment from './Appointments';
 @Entity('users')
  class User {
     @PrimaryGeneratedColumn('uuid')

@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import {Migrations} from './migrations/allMigrations';
-import Appointment from '../models/Appointments';
+import {Entity} from '../models/AllModels';
 
 const postgresDataSource = new DataSource({
     type: "postgres",
@@ -10,7 +10,7 @@ const postgresDataSource = new DataSource({
     username: "postgres",
     password: "docker",
     database: "gostack_postgres",
-    entities: [Appointment],
+    entities: Entity,
     migrations: Migrations,
 
    
