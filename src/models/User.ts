@@ -1,6 +1,5 @@
 
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-import Appointment from './Appointments';
 @Entity('users')
  class User {
     @PrimaryGeneratedColumn('uuid')
@@ -16,7 +15,7 @@ import Appointment from './Appointments';
     password: string;
 
     @CreateDateColumn()
-    create_at: Date;
+    craeted_at: Date;
 
     @UpdateDateColumn()
     updated_at: Date;

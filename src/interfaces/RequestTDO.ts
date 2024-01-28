@@ -1,5 +1,5 @@
 interface RequestTDO {
-    provider: string;
+    provider_id: string;
     date: Date;
 }
 

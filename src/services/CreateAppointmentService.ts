@@ -4,7 +4,7 @@ import { AppointmentsRepository } from "../repositories/AppointmentsRepository";
 import RequestTDO from "../interfaces/RequestTDO";
 
 class CreatAppointmentServices{
-    public async exec({ provider, date }:RequestTDO): Promise <Appointment> {
+    public async exec({ provider_id, date }:RequestTDO): Promise <Appointment> {
         const appointmentsRepository = AppointmentsRepository
         const AppointmentDate = startOfHour(date)
 
@@ -15,7 +15,7 @@ class CreatAppointmentServices{
         }
     
         const appointment = appointmentsRepository.create({
-            provider, 
+            provider_id, 
             date: AppointmentDate
         });
         await appointmentsRepository.save(appointment)
