@@ -13,7 +13,11 @@ usersRouter.post('/', async (request, response) => {
       email, name, password
     });
 
+    user.password = 'privader';
+    
+    
     response.json(user);
+
 
    } catch (err: any) {
     return response.status(400).json({ error: err.message});
