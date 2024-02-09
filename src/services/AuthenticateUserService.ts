@@ -1,9 +1,10 @@
 import AuthenticateUserRequestDTO from "../interfaces/AuthenticateUserRequestDTO";
 import { sign } from "jsonwebtoken"
+import autheConfig from "../config/authe";
 import User from "../models/User";
 import postgresDataSource from "../datebase/data-source";
 import { compare } from "bcryptjs"
-import { id } from "date-fns/locale";
+
 
 class AuthenticateUserService {
     public async execute({ email, password }: AuthenticateUserRequestDTO): Promise<{ user:User, token:string }> {
@@ -21,9 +22,11 @@ class AuthenticateUserService {
             throw new Error('Incorrect email/password combination')
         }
 
-        const token = sign({}, 'a089b624432f023dc4958ff7d95e0829',{
+        const { expiresIn, secret } = autheConfig.jwt;
+
+        const token = sign({}, secret,{
             subject: user.id,
-            expiresIn: '1d',
+            expiresIn,
         });
 
         return {
