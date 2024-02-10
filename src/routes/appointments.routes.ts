@@ -10,6 +10,8 @@ const appointmentsRouter = Router();
 appointmentsRouter.use(ensureAuthetucated);
 
 appointmentsRouter.get('/', async (request, response) => {
+    console.log(request.user)
+
     const appointmentsRepository = AppointmentsRepository
 
     const appointments = await appointmentsRepository.find();

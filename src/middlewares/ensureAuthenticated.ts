@@ -1,13 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 import autheConfig from "../config/authe";
-import usersRouter from "../routes/users.routes";
-
-interface TokenPayload {
-   iat: number;
-   exp: number;
-   sub: string;
-}
+import TokenPayload from "../interfaces/TokenPayloadTDO";
 
 export default function ensureAuthetucated(request:Request, response:Response, next:NextFunction): void {
  const authHeaders = request.headers.authorization;
