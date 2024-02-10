@@ -1,8 +1,10 @@
-import AuthenticateUserRequestDTO from "../interfaces/AuthenticateUserRequestDTO";
-import { sign } from "jsonwebtoken"
-import autheConfig from "../config/authe";
 import User from "../models/User";
 import postgresDataSource from "../datebase/data-source";
+
+import AuthenticateUserRequestDTO from "../interfaces/AuthenticateUserRequestDTO";
+import autheConfig from "../config/authe";
+
+import { sign } from "jsonwebtoken"
 import { compare } from "bcryptjs"
 
 
