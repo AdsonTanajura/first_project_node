@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import CreateUsersService from '../services/CreateUserService';
+import ensureAuthetucated from '../middlewares/ensureAuthenticated';
 const usersRouter = Router();
 
 
@@ -23,5 +24,9 @@ usersRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: err.message});
    }
 });
+
+usersRouter.patch('/avata', ensureAuthetucated,async (request, response) => {
+  return response.json({ ok: true })
+} )
 
 export default usersRouter;
