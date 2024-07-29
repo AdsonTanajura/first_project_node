@@ -12,7 +12,7 @@ const postgresDataSource = new DataSource({
     database: "gostack_postgres",
     entities: Entity,
     migrations: Migrations,
-
+    migrationsRun:true,
    
 })
 

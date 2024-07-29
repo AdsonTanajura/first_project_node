@@ -4,7 +4,7 @@ import routes from './routes';
 import postgresDataSource from './datebase/data-source';
 const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
 app.use(routes);
 
