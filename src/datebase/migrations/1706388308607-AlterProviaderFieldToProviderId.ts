@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from "typeorm";
 
-export class AlterProviaderFieldToProviderId1706388308607 implements MigrationInterface {
+export default class AlterProviaderFieldToProviderId1706388308607 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         
