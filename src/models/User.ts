@@ -14,6 +14,9 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
     @Column()
     password: string;
 
+    @Column()
+    avatar: string;
+
     @CreateDateColumn()
     craeted_at: Date;
 

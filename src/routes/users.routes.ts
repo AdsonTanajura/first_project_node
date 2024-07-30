@@ -4,6 +4,7 @@ import ensureAuthetucated from '../middlewares/ensureAuthenticated';
 
 import multer from 'multer';
 import uplaodConfig from '../config/uplaod';
+import UpdadeUserAvatarService from '../services/UpdateUserAvatarService';
 
 const usersRouter = Router();
 const uplaod = multer(uplaodConfig);
@@ -30,8 +31,19 @@ usersRouter.post('/', async (request, response) => {
 });
 
 usersRouter.patch('/avata', ensureAuthetucated, uplaod.single('avatar'), async (request, response) => {
-  console.log(request.file);
-  return response.json({ ok: true })
+  console.log(request.file)
+  try {
+    const updadeUserAvatar = new UpdadeUserAvatarService();
+
+    const user = await updadeUserAvatar.execute({
+      user_id: request.user.id,
+      avatarFilename: request.file!.filename,
+    })
+
+    return response.json(user)
+  } catch (err: any) {
+    return response.status(400).json({ error: err.message});
+  }
 } )
 
 export default usersRouter;
