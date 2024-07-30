@@ -40,7 +40,9 @@ usersRouter.patch('/avata', ensureAuthetucated, uplaod.single('avatar'), async (
       avatarFilename: request.file!.filename,
     })
 
-    return response.json(user)
+    const { password, ...userWithoutPassword } = user;
+
+    return response.json(userWithoutPassword)
   } catch (err: any) {
     return response.status(400).json({ error: err.message});
   }
