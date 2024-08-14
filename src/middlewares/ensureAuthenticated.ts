@@ -2,11 +2,12 @@ import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 import autheConfig from "../config/authe";
 import TokenPayload from "../interfaces/TokenPayloadTDO";
+import AppError from "../errors/AppError";
 
 export default function ensureAuthetucated(request:Request, response:Response, next:NextFunction): void {
  const authHeaders = request.headers.authorization;
  if (!authHeaders){
-    throw new Error('JWT token is missing')
+    throw new AppError('JWT token is missing', 401)
  }
 
  const [, token] = authHeaders.split(' ');
@@ -22,7 +23,7 @@ export default function ensureAuthetucated(request:Request, response:Response, n
      
      return next();
  } catch {
-    throw new Error('Ivalid JWT token');
+    throw new AppError('Ivalid JWT token', 401);
  }
 
 };

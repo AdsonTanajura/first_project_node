@@ -30,7 +30,7 @@ usersRouter.post('/', async (request, response) => {
    }
 });
 
-usersRouter.patch('/avata', ensureAuthetucated, uplaod.single('avatar'), async (request, response) => {
+usersRouter.patch('/avatar', ensureAuthetucated, uplaod.single('avatar'), async (request, response) => {
   console.log(request.file)
   try {
     const updadeUserAvatar = new UpdadeUserAvatarService();

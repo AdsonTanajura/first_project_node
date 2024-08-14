@@ -11,7 +11,7 @@ class CreatAppointmentServices{
         const findAppointmentInSameDate = await appointmentsRepository.findByDate(AppointmentDate);
     
         if (findAppointmentInSameDate) {
-            throw Error('This Appointment is aready booked')
+            throw new Error('This Appointment is aready booked')
         }
     
         const appointment = appointmentsRepository.create({

@@ -4,6 +4,7 @@ import UpdateUserAvatarServiceDTO from "../interfaces/UpdateUserAvatarServiceDTO
 import path from 'path';
 import uplaodConfig from '../config/uplaod';
 import fs from 'fs';
+import AppError from "../errors/AppError";
 
 class UpdadeUserAvatarService {
     public async execute({ user_id, avatarFilename }: UpdateUserAvatarServiceDTO): Promise<User> {
@@ -12,7 +13,7 @@ class UpdadeUserAvatarService {
         const user = await usersRepository.findOne({ where: { id: user_id } });
 
         if (!user) {
-            throw new Error('Only authenticated users can change avatar.');
+            throw new AppError('Only authenticated users can change avatar.', 401);
         }
 
         if (user.avatar) {

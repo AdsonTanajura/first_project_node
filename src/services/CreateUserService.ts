@@ -2,6 +2,7 @@ import User from "../models/User";
 import UserRequestTDO from "../interfaces/UserRequestTDO";
 import postgresDataSource from "../datebase/data-source";
 import { hash } from "bcryptjs"
+import AppError from "../errors/AppError";
 
 class CreateUsersService {
     async execute({ email, name, password }:UserRequestTDO): Promise<User> {
@@ -12,7 +13,7 @@ class CreateUsersService {
         });
 
         if (checkUserExists) {
-            throw new Error('Email adrress alteady used')
+            throw new AppError('Email adrress alteady used')
         }
 
         const hashedPassword = await hash(password, 8);
