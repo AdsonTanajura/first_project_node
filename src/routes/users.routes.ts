@@ -32,7 +32,6 @@ usersRouter.post('/', async (request, response) => {
 
 usersRouter.patch('/avatar', ensureAuthetucated, uplaod.single('avatar'), async (request, response) => {
   console.log(request.file)
-  try {
     const updadeUserAvatar = new UpdadeUserAvatarService();
 
     const user = await updadeUserAvatar.execute({
@@ -43,9 +42,6 @@ usersRouter.patch('/avatar', ensureAuthetucated, uplaod.single('avatar'), async 
     const { password, ...userWithoutPassword } = user;
 
     return response.json(userWithoutPassword)
-  } catch (err: any) {
-    return response.status(400).json({ error: err.message});
-  }
 } )
 
 export default usersRouter;
